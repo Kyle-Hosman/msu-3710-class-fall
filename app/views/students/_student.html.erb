@@ -30,7 +30,10 @@
       <%= image_tag student.profile_picture, size: "150x150" %>
     </p>
   <% else %>
-    <p>No profile picture uploaded.</p>
+    <p>
+      <strong>Profile Picture:</strong><br>
+      <%= image_tag 'default_profile_pic.jpg', size: "150x150" %>
+    </p>
   <% end %>
 
 </div>

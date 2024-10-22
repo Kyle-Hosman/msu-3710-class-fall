@@ -1,21 +1,38 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: %i[ show edit update destroy ]
 
-   # GET /students or /students.json
-  def index
-  @search_params = params[:search] || {}
-  @students = Student.all
-
-    if @search_params[:major].present?
-      @students = @students.where(major: @search_params[:major])
-    end
-
-  end
-
   # GET /students or /students.json
   def index
+    Rails.logger.info "Params: #{params.inspect}"
+  
+    @search_params = params[:search] || {}
     @students = Student.all
+
+    Rails.logger.info "Search Params: #{@search_params.inspect}"
+
+    if @search_params[:major].present? || @search_params[:graduation_date].present?
+      @students = @students.where(nil) # creates an anonymous scope
+      @students = @students.where(major: @search_params[:major]) if @search_params[:major].present?
+      if @search_params[:graduation_date].present?
+        begin
+          date = Date.parse(@search_params[:graduation_date])
+          if @search_params[:graduation_date_option] == 'Before'
+            @students = @students.where('graduation_date <= ?', date)
+          elsif @search_params[:graduation_date_option] == 'After'
+            @students = @students.where('graduation_date >= ?', date)
+          else
+            @students = @students.where(graduation_date: date)
+          end
+        rescue ArgumentError
+          Rails.logger.error "Invalid date format for graduation_date: #{@search_params[:graduation_date]}"
+        end
+      end
+    end
   end
+  # GET /students or /students.json
+  # def index
+  #   @students = Student.all
+  # end
 
   # GET /students/1 or /students/1.json
   def show

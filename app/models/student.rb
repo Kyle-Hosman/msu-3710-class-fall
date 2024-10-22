@@ -12,4 +12,7 @@ class Student < ApplicationRecord
 
     validates :major, inclusion: { in: VALID_MAJORS, message: "%{value} is not a valid major" }
 
+    GRAD_DATE_BEFOREAFTER = ["Before", "After"]
+    VALID_GRAD_DATES = (Date.today..(Date.today + 10.years)).to_a
+
 end

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>YourApp</title>
+    <title>MSU Student Database</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -49,32 +49,10 @@
       </div>
     </nav>
 
-    <!-- Search Form -->
-    <div class="container mt-4">
-      <%= render "students/search_form" %>
-    </div>
-    
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
-    <!-- Students Grid -->
-    <div class="container mt-4">
-      <div class="row">
-        <% @students.each do |student| %>
-          <div class="col-md-4">
-            <div class="card mb-4">
-              <div class="card-body">
-                <h5 class="card-title"><%= student.name %></h5>
-                <p class="card-text">Graduation Date: <%= student.graduation_date %></p>
-                <p class="card-text">Major: <%= student.major %></p>
-                <p class="card-text">Email: <%= student.school_email %></p>
-                <%= link_to 'Show', student_path(student), class: 'btn btn-primary' %>
-                <%= link_to 'Edit', edit_student_path(student), class: 'btn btn-secondary' %>
-                <%= link_to 'Delete', student_path(student), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    
 
     <%= yield %>
   </body>

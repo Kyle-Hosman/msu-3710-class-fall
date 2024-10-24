@@ -66,3 +66,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# User authentication https://github.com/heartcombo/devise
+gem "devise"
+

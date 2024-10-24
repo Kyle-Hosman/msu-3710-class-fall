@@ -12,6 +12,16 @@
   <% end %>
 
   <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :password, style: "display: block" %>
+    <%= form.text_field :password %>
+  </div>
+
+  <div>
     <%= form.label :first_name, style: "display: block" %>
     <%= form.text_field :first_name %>
   </div>
@@ -19,11 +29,6 @@
   <div>
     <%= form.label :last_name, style: "display: block" %>
     <%= form.text_field :last_name %>
-  </div>
-
-  <div>
-    <%= form.label :school_email, style: "display: block" %>
-    <%= form.text_field :school_email %>
   </div>
 
   <div>

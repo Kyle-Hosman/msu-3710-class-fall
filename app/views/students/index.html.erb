@@ -1,17 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Search</h1>
-<%= render 'search_form', search_params: @search_params %>
+<!-- <%= render 'search_form', search_params: @search_params %> -->
+<!-- Search Form -->
+    <div class="container mt-4">
+    <h1>Search</h1>
+      <%= render "students/search_form" %>
+    </div>
 
-<h1>Students</h1>
 
-<div id="students">
-  <% @students.each do |student| %>
-    <%= render student %>
-    <p>
-      <%= link_to "Show this student", student %>
-    </p>
-  <% end %>
-</div>
 
-<%= link_to "New student", new_student_path %>
+<!-- Students Grid -->
+    <div class="container mt-4">
+    <h1>Students</h1>
+      <div class="row">
+        <% @students.each do |student| %>
+          <div class="col-md-4">
+            <div class="card mb-4">
+              <div class="card-body">
+                <h5 class="card-title"><%= "#{student.first_name} #{student.last_name}" %></h5>
+                <p class="card-text">Graduation Date: <%= student.graduation_date %></p>
+                <p class="card-text">Major: <%= student.major %></p>
+                <%= link_to 'Show', student_path(student), class: 'btn btn-primary' %>
+                <%= link_to 'Edit', edit_student_path(student), class: 'btn btn-secondary' %>
+                <%= link_to 'Delete', student_path(student), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>

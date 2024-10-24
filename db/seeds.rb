@@ -26,15 +26,13 @@ Student.destroy_all # Clear existing records if any
 
 50.times do |i|
  student =Student.create!(
-   name: "Name Lastname #{i + 1}",
-   school_email: "student#{i + 1}@msudenver.edu",
+   first_name: "First#{i + 1}",
+   last_name: "Last#{i + 1}",
    major: Student::VALID_MAJORS.sample, # Assuming you have a VALID_MAJORS constant
-   graduation_date: Faker::Date.between(from: 2.years.ago, to: 2.years.from_now),
-   minor: "N/A",
-  
+   graduation_date: Faker::Date.between(from: 2.years.ago, to: 2.years.from_now), 
  )
-  # Generate a unique profile pic based on the student's name
-   #profile_picture_url = "https://robohash.org/#{student.first_name.gsub(' ', '')}"
-   #profile_picture = URI.open(profile_picture_url)
-   #student.profile_picture.attach(io: profile_picture, filename: "#{student.first_name}.jpg")
+  #Generate a unique profile pic based on the student's name
+   profile_picture_url = "https://robohash.org/#{student.first_name.gsub(' ', '')}"
+   profile_picture = URI.open(profile_picture_url)
+   student.profile_picture.attach(io: profile_picture, filename: "#{student.first_name}.jpg")
 end
